@@ -1,20 +1,41 @@
-name: Maven Build
+name: Deploy to Amazon ECS
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main" ]
+
+permissions:
+  contents: read
 
 jobs:
-
-  build:
-
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: setup jdk1.8
-      uses: actions/setup-java@v1
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
       with:
-        java-version: 1.8
-    - name: build with maven
-      run: mvn -B package --file pom.xml
+        aws-access-key-id: AKIAXZBMZSZCOKQALAH6
+        aws-secret-access-key: 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
+        aws-region: us-west-2
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push image to Amazon ECR
+      id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: latest
+      run: |
+        # Build a docker container and
+        # push it to ECR so that it can
+        # be deployed to ECS.
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
