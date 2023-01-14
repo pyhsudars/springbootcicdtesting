@@ -3,7 +3,11 @@ name: Maven Build
 on:
   push:
     branches: [ "master" ]
-
+    
+env:
+  AWS_REGION: us-west-2                   # set this to your preferred AWS region, e.g. us-west-1
+  ECR_REPOSITORY: onescmecr           # set this to your Amazon ECR repository name
+  
 permissions:
   contents: read
 
@@ -32,8 +36,8 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: onescmecr
         IMAGE_TAG: latest
+        #IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
         # push it to ECR so that it can
