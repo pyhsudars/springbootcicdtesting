@@ -39,5 +39,5 @@ jobs:
         # be deployed to ECS.
         echo "$ECR_REGISTRY"
         docker build -t $ECR_REGISTRY/onescmimage:$IMAGE_TAG .
-        #docker push $ECR_REGISTRY/onescmimage:$IMAGE_TAG
+        docker push $ECR_REGISTRY/onescmimage:$IMAGE_TAG
         echo "image=$ECR_REGISTRY/onescmimage:$IMAGE_TAG" >> $GITHUB_OUTPUT
