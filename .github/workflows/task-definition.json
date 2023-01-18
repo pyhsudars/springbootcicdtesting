@@ -1,7 +1,7 @@
 {
     "family": "onescmtaskdefn",
     "executionRoleArn": "arn:aws:iam::534817379908:role/ecsTaskExecutionRole",
-    "taskRoleArn": null,
+    "taskRoleArn": "arn:aws:iam::534817379908:role/ecsTaskExecutionRole",
     "cpu": "512",
     "memory": "1024",
     "networkMode": "awsvpc",
