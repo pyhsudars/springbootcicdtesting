@@ -36,7 +36,7 @@ public class HelloWorldController {
         String host = InetAddress.getLocalHost().getHostName();
         String ip = InetAddress.getLocalHost().getHostAddress();
         Map<String, String> response = new HashMap<>();
-        response.put(MESSAGE_KEY, "Hello World! Have a nice Good Morning");
+        response.put(MESSAGE_KEY, "Hello World! Very Good Morning");
         response.put(HOSTNAME_KEY, host);
         response.put(IP_KEY, ip);
         LOG.info("Returning {}", response);
