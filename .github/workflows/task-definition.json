@@ -7,7 +7,7 @@
     "networkMode": "awsvpc",
     "containerDefinitions": [
         {
-            "name": "onescmcontainer",
+            "name": "onescmecr",
             "image": "534817379908.dkr.ecr.us-west-2.amazonaws.com/onescmecr:latest",
             "logConfiguration": {
                 "logDriver": "awslogs",
