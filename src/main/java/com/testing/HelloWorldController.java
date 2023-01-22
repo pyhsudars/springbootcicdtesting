@@ -42,5 +42,10 @@ public class HelloWorldController {
         LOG.info("Returning {}", response);
         return response;
     }
+    
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello World";
+    }
 
 }
