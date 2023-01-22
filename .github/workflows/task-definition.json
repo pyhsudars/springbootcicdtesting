@@ -1,5 +1,5 @@
 {
-    "family": "onescmtaskdefn",
+    "family": "lbtaskdefn",
     "executionRoleArn": "arn:aws:iam::534817379908:role/ecsTaskExecutionRole",
     "taskRoleArn": "arn:aws:iam::534817379908:role/ecsTaskExecutionRole",
     "cpu": "2048",
@@ -7,12 +7,12 @@
     "networkMode": "awsvpc",
     "containerDefinitions": [
         {
-            "name": "onescmecr",
+            "name": "lbcontainer",
             "image": "534817379908.dkr.ecr.us-west-2.amazonaws.com/onescmecr:latest",
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
-                    "awslogs-group": "/ecs/onescmtaskdefn",
+                    "awslogs-group": "/ecs/lbtaskdefn",
                     "awslogs-region": "us-west-2",
                     "awslogs-stream-prefix": "ecs"
                 }
